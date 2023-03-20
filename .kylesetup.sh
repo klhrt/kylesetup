@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt update
 sudo apt install fish compton polybar feh firefox polybar xinit autorandr kitty nvidia-driver-525 pcmanfm redshift libudev-dev
-sudo snap install neovim
+sudo snap install --beta nvim --classic
 
 cp -rd .config/ ~/
 cp -rd Pictures/ ~/
