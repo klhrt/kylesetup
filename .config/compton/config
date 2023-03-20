@@ -1,0 +1,5 @@
+#opacity
+active-opacity = 1;
+inactive-opacity = 0.85;
+opacity-rule = [ "99:class_g = 'firefox' && focused", "95:class_g = 'kitty' && focused", "95:class_g = 'discord' && focused"];
+
