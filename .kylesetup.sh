@@ -22,7 +22,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 export PATH="$PATH:~/.cargo/bin/"
 
-chsh -s /usr/local/bin/fish
+chsh -s /usr/bin/fish
 
 sudo apt update
 sudo apt upgrade
