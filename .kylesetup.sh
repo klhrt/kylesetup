@@ -1,10 +1,10 @@
 #!/bin/bash
 sudo apt update
-sudo apt install fish compton polybar feh firefox polybar xinit autorandr kitty nvidia-driver-525 pcmanfm redshift libudev-dev
+sudo apt install fish compton polybar feh firefox polybar xinit autorandr kitty pcmanfm redshift libudev-dev
 sudo snap install --beta nvim --classic
 
-cp -rd .config/ ~/
-cp -rd Pictures/ ~/
+sudo cp -rd .config/ ~/
+sudo cp -rd Pictures/ ~/
 sudo cp -rd fonts/ /usr/share/
 sudo cp ./shells /etc/shells
 

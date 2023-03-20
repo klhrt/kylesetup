@@ -212,7 +212,7 @@ exec_always --no-startup-id "killall compton"
 
 exec_always --no-startup-id "/usr/bin/compton --config ~/.config/compton/config"
 
-exec_always --no-startup-id "autorandr --change home && feh --bg-fill ~/Pictures/rainbow.png"
+exec_always --no-startup-id "feh --bg-fill ~/Pictures/rainbow.png"
 
 assign [class="discord"] 3
 
