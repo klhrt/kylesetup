@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt update
-sudo apt install fish compton polybar feh firefox polybar xinit autorandr kitty pcmanfm redshift libudev-dev
+sudo apt install fish compton polybar feh firefox polybar xinit autorandr kitty pcmanfm redshift libudev-dev alsa
 sudo snap install --beta nvim --classic
 
 sudo cp -rd .config/ ~/
