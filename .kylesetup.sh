@@ -26,6 +26,8 @@ export PATH="$PATH:~/.cargo/bin/"
 
 chsh -s /usr/bin/fish
 
+cargo install porsmo
+cargo install ttyper
 sudo apt update
 sudo apt upgrade
 
