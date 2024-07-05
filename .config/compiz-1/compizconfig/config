@@ -1,0 +1,10 @@
+[gnome_session]
+profile = 
+
+[general]
+profile = 
+integration = true
+
+[general_gnome-flashback]
+profile = gnome-flashback
+

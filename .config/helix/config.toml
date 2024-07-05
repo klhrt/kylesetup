@@ -1,0 +1,26 @@
+theme = "everforest_dark"
+[editor]
+true-color = true
+auto-completion = true
+line-number = "relative"
+soft-wrap.enable = true
+[keys.insert]
+j = {j = "normal_mode"}
+C-q = ":q!"
+C-w = [":w!", ":q!"]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+pageup = "no_op"
+pagedown= "no_op"
+[keys.normal]
+C-q = ":q!"
+C-w = [":w!", ":q!"]
+C-y = ":o ."
+C-s = ":w"
+C-o = ":config-open"
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
