@@ -1,8 +1,6 @@
-if type "xrandr"; then
-  killall polybar
-  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+#!/bin/bash
+killall polybar
+
+for m in $(polybar --list-monitors | cut -d":" -f1); do
     MONITOR=$m polybar --config=~/.config/polybar/config.ini --reload example &
-  done
-else
-  polybar --reload example &
-fi
+done
