@@ -1,0 +1,27 @@
+output DP-0
+off
+output HDMI-0
+off
+output DP-3
+off
+output DP-4
+off
+output USB-C-0
+off
+output DP-2
+crtc 0
+mode 1920x1080
+pos 1536x0
+primary
+rate 144.00
+output DP-5
+crtc 1
+mode 1024x768
+pos 0x312
+rate 140.01
+transform 1.500000,0.000000,0.000000,0.000000,1.500000,0.000000,0.000000,0.000000,1.000000
+output DP-1
+crtc 2
+mode 1280x720
+pos 3456x360
+rate 60.00

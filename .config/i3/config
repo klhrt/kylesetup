@@ -28,8 +28,8 @@ exec --no-startup-id dex --autostart --environment i3
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86Tools exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86Tools exec --no-startup-id "vesktop -- --keybind 2"
 
 bindsym $mod+m exec --no-startup-id pavucontrol
 
@@ -46,7 +46,7 @@ bindsym $mod+b exec firefox
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+r exec --no-startup-id dmenu_run
+bindsym $mod+r exec --no-startup-id rofi -show run -matching fuzzy
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -111,14 +111,15 @@ set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "term"
+set $ws9 "games"
 set $ws10 "chat"
-set $ws11 "workterm"
+set $ws11 "games2"
 set $ws12 "workchat"
 
-workspace $ws1 output DP-4
-workspace $ws9 output HDMI-0
-workspace $ws10 output DP-2
+workspace $ws1 output DP-2
+workspace $ws10 output DP-1
+workspace $ws9 output DP-5
+workspace $ws11 output DP-5
 
 # set $exec_i3_groups exec --no-startup-id i3-workspace-groups
 
@@ -158,8 +159,10 @@ bindsym $mod+Shift+5 move container to workspace number 5
 bindsym $mod+Shift+6 move container to workspace number 6
 bindsym $mod+Shift+7 move container to workspace number 7
 bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Mod1+Shift+9 move container to workspace $ws11
+bindsym $mod+Mod1+Shift+0 move container to workspace $ws12
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -182,6 +185,8 @@ mode "exit: [l], [r], [s]" {
 
 bindsym $mod+Shift+Mod1+z move scratchpad
 bindsym $mod+Shift+z scratchpad show
+bindsym $mod+n exec --no-startup-id "$HOME/.config/i3/i3-swap-master.py"
+bindsym $mod+Mod1+s exec --no-startup-id "/home/kyle/.millenium/start.sh"
 
 bindsym $mod+Shift+e mode "exit: [l], [r], [s]"
 
@@ -216,25 +221,29 @@ mode "resize" {
 default_border pixel 0
 
 new_window pixel 4
-client.focused #000000 #285577 #ffffff #f18eac #f18eac
+client.focused #000000 #83c092 #ffffff #83c092 #83c092
 
 assign [class="vesktop"] chat
+assign [class="steam"] games
+assign [class="heroic"] games2
 
 gaps inner 4
 gaps outer 4
 
-exec --no-startup-id i3-msg 'workspace term; exec kitty'
-
 exec_always --no-startup-id "nohup compton --config ~/.config/compton/config &"
 
-exec_always --no-startup-id "autorandr --change home ; feh --bg-fill ~/Pictures/rainbow.png"
+exec_always --no-startup-id "autorandr --change home2; feh --bg-fill ~/Pictures/rainbow.png"
 
 exec --no-startup-id "vesktop"
 
 exec_always --no-startup-id "~/.config/polybar/launch_polybar.sh&"
 
-exec --no-startup-id "redshift"
+exec --no-startup-id "redshift -l 35.8:-78.6"
 
 exec --no-startup-id "unclutter &"
 
-exec --no-startup-id "nohup play -n synth brownnoise synth pinknoise mix synth 0 0 0 15 40 80 trapezium amod 0.2 20 gain -31"
+exec --no-startup-id "sudo -b openvpn ~/openvpn/ca-12.protonvpn.udp.ovpn &"
+
+exec_always --no-startup-id "$HOME/.config/i3/i3-master-layout.py"
+
+bindsym $mod+g exec --no-startup-id "i3-msg resize set width 33ppt"

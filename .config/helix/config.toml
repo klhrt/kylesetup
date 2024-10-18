@@ -8,6 +8,7 @@ soft-wrap.enable = true
 j = {j = "normal_mode"}
 C-q = ":q!"
 C-w = [":w!", ":q!"]
+C-backspace = "no_op"
 up = "no_op"
 down = "no_op"
 left = "no_op"
@@ -20,6 +21,7 @@ C-w = [":w!", ":q!"]
 C-y = ":o ."
 C-s = ":w"
 C-o = ":config-open"
+C-backspace = "no_op"
 up = "no_op"
 down = "no_op"
 left = "no_op"
