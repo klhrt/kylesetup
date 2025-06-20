@@ -24,12 +24,15 @@ font pango:monospace 8
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec --no-startup-id "xset -dpms"
+exec --no-startup-id "xset s off"
+
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86Tools exec --no-startup-id "vesktop -- --keybind 2"
+bindsym XF86Tools exec --no-startup-id "vesktop --keybind=5"
 
 bindsym $mod+m exec --no-startup-id pavucontrol
 
@@ -39,11 +42,17 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec kitty -e fish
 
+
+bindsym Mod1+Shift+Return exec kitty -e fish
+
 # start browser
-bindsym $mod+b exec firefox
+bindsym $mod+b exec zen-browser
 
 # kill focused window
 bindsym $mod+c kill
+
+# swap to master node
+bindsym $mod+n exec --no-startup-id $HOME/.config/i3/swapper
 
 # start dmenu (a program launcher)
 bindsym $mod+r exec --no-startup-id rofi -show run -matching fuzzy
@@ -52,7 +61,7 @@ bindsym $mod+r exec --no-startup-id rofi -show run -matching fuzzy
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 # selection screenshot, goes to clipboard
 bindsym $mod+p exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
 
@@ -116,10 +125,10 @@ set $ws10 "chat"
 set $ws11 "games2"
 set $ws12 "workchat"
 
-workspace $ws1 output DP-2
+workspace $ws1 output DP-5
 workspace $ws10 output DP-1
-workspace $ws9 output DP-5
-workspace $ws11 output DP-5
+workspace $ws9 output DP-2
+workspace $ws11 output DP-2
 
 # set $exec_i3_groups exec --no-startup-id i3-workspace-groups
 
@@ -185,7 +194,6 @@ mode "exit: [l], [r], [s]" {
 
 bindsym $mod+Shift+Mod1+z move scratchpad
 bindsym $mod+Shift+z scratchpad show
-bindsym $mod+n exec --no-startup-id "$HOME/.config/i3/i3-swap-master.py"
 bindsym $mod+Mod1+s exec --no-startup-id "/home/kyle/.millenium/start.sh"
 
 bindsym $mod+Shift+e mode "exit: [l], [r], [s]"
@@ -224,8 +232,8 @@ new_window pixel 4
 client.focused #000000 #83c092 #ffffff #83c092 #83c092
 
 assign [class="vesktop"] chat
+assign [class="Ryujinx"] games2
 assign [class="steam"] games
-assign [class="heroic"] games2
 
 gaps inner 4
 gaps outer 4
@@ -240,10 +248,13 @@ exec_always --no-startup-id "~/.config/polybar/launch_polybar.sh&"
 
 exec --no-startup-id "redshift -l 35.8:-78.6"
 
+exec_always --no-startup-id  masterstack
+
 exec --no-startup-id "unclutter &"
 
 exec --no-startup-id "sudo -b openvpn ~/openvpn/ca-12.protonvpn.udp.ovpn &"
 
-exec_always --no-startup-id "$HOME/.config/i3/i3-master-layout.py"
+bindsym $mod+g "resize set width 33ppt"
 
-bindsym $mod+g exec --no-startup-id "i3-msg resize set width 33ppt"
+exec --no-startup-id "kitty --class 'sunshine' -e sunshine"
+for_window [class="sunshine"] move window to scratchpad
