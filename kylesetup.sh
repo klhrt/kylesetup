@@ -7,13 +7,11 @@ sudo cp -rd Pictures/ ~/
 sudo cp -rd fonts/ /usr/share/
 sudo cp ./shells /etc/shells
 
-sudo apt install -y awesome
-
-cd ~/Downloads
-wget -c http://archive.ubuntu.com/ubuntu/pool/main/l/lvm2/liblvm2app2.2_2.02.176-4.1ubuntu3.18.04.3_amd64.deb
-sudo apt-get install lvm2 ./liblvm2app2.2_2.02.176-4.1ubuntu3.18.04.3_amd64.deb
-wget -c http://archive.ubuntu.com/ubuntu/pool/universe/k/kvpm/kvpm_0.9.10-1.1_amd64.deb
-sudo apt-get install -y ./kvpm_0.9.10-1.1_amd64.deb
+/usr/lib/apt/apt-helper download-file https://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2025.03.09_all.deb keyring.deb SHA256:2c2601e6053d5c68c2c60bcd088fa9797acec5f285151d46de9c830aaba6173c
+sudo apt install ./keyring.deb
+echo "deb [signed-by=/usr/share/keyrings/sur5r-keyring.gpg] http://debian.sur5r.net/i3/ $(grep '^VERSION_CODENAME=' /etc/os-release | cut -f2 -d=) universe" | sudo tee /etc/apt/sources.list.d/sur5r-i3.list
+sudo apt update
+sudo apt install i3
 
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
